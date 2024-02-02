@@ -153,12 +153,12 @@ fn my_entry_point(boot_info: &'static mut bootloader_api::BootInfo) -> ! {
     interrupts::init();
 
     //Let's experience getting string from keyboard and saving into a variable for use
-    print!("Enter string: ");
-    let input = match input_str() {
+    //print!("Enter string: ");
+    /*let input = match input_str() {
         Some(value) => value,
         None => "".to_owned()
     };
-    println!("\nString entered is '{}'", input);
+    println!("\nString entered is '{}'", input);/ */
 
 
     // invoke a breakpoint exception for test
@@ -172,6 +172,10 @@ fn my_entry_point(boot_info: &'static mut bootloader_api::BootInfo) -> ! {
         *(0xdeadbeef as *mut u8) = 42; //invalid memory address
     };*/
     
+
+
+    let returned_input = input_str!("Your String: I am going to swim into the ocean rn: ");
+    println!("\n String entered is '{}'", returned_input );
 
     loop {
         hlt(); //stop x86_64 from being unnecessarily busy while looping
